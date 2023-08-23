@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# adjust the backlight brightness by += $1
+
+# NB run $ ls /sys/class to find the dir for your graphics card
+# we use 'acpi_video0' but you may find 'intel_backlight'
+
+# to run permissionless:
+# - add user to video group by running $ usermod -aG video <user>
+# - create the file /etc/udev/rules.d/backlight.rules
+# - add the following line (uncommented) to the newly created file:
+# ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/acpi_video0/brightness", RUN+="/bin/chmod g+w /sys/class/acpi_video0/brightness"
+# - reboot
+
+brightness="/sys/class/backlight/acpi_video0/brightness"
+
+echo $(($(< "${brightness}") + $1)) > "${brightness}";

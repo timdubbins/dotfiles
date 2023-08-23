@@ -1,0 +1,32 @@
+n!/bin/sh
+
+echo "please select: "
+rivalcfg --firmware-version > &1
+if [ $? -eq 0 ]
+then
+    echo "SteelSeries device detected. Would you like to "
+    echo "  [1] configure SteelSeries device,"
+    echo "  [2] configure other input device: "
+    read -p "seletction: " num
+    if [ $num == 1 ]
+        then
+            echo "configure rival"
+            exit
+    fi
+else
+    echo
+    echo "device list:"
+    echo
+    xinput --list
+    echo
+    read -p "enter device id: " dev
+    echo
+    echo "properties list: "
+    echo
+    xinput --list-props $dev || exit
+    echo
+    read -p "enter property id: " prop || exit
+    read -p "enter new value: " val || exit
+    xinput --set-prop $dev $prop $val && echo "done!"
+    exit
+fi

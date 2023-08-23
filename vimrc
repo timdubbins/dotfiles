@@ -58,8 +58,9 @@ let g:tex_flavor = 'latex'
 filetype plugin indent on
 colorscheme gruvbox
 
+set background=dark
 set nocompatible
-set clipboard=unnamed
+set clipboard=unnamedplus
 set encoding=utf-8
 set number
 set hls

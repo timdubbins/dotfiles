@@ -1,34 +1,50 @@
 #!/bin/zsh
 
-source $HOME/.zgen/zgen.zsh
+#source $HOME/.zgen/zgen.zsh
 
-if ! zgen saved; then
-  zgen oh-my-zsh themes/gnzh
-  zgen save
-fi
+#if ! zgen saved; then
+#  zgen oh-my-zsh themes/gnzh
+#  zgen save
+#fi
 
 #PS1=' ▶ '
+
+autoload -Uz compinit
+compinit
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+bindkey -v
 
 eval "$(zoxide init zsh)"
 
 export EDITOR='nvim'
-
 export BAT_THEME="gruvbox-dark"
-
 export SKIM_DEFAULT_COMMAND="fd --type f"
-
 export PKG_CONFIG_PATH="/usr/local/opt/ncurses/lib/pkgconfig"
 
-bindkey -v
+#function reboot() {
+#    osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+#}
 
-function reboot() {
-    osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+#function shutdown() {
+#    osascript -e 'tell app "loginwindow" to «event aevtrsdn»'
+#}
+
+function mkcd() {
+  mkdir "$1"
+  cd "$1"
 }
 
-function shutdown() {
-    osascript -e 'tell app "loginwindow" to «event aevtrsdn»'
-}
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+alias ~="cd ~"
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
 alias c="code"
 alias ca="cargo"
 alias cs="clear"
@@ -41,7 +57,7 @@ alias ga='git add'
 alias gb='git branch'
 alias gc='git commit --verbose'
 alias gd='git diff'
-alias gst='git status'
+alias gs='git status'
 alias l="exa -1"
 alias la="exa -1 -a"
 alias ll="exa -l"
@@ -50,15 +66,15 @@ alias n="nvim"
 alias nvimrc="nvim $HOME/dotfiles/vimrc"
 alias nzshrc="nvim $HOME/dotfiles/zshrc"
 alias o="open"
+alias shutdown="shutdown now"
 alias sleep="pmset sleepnow"
 alias sw="swift"
-alias tp="~/rust/tap/target/release/tap ~/slsk"
 alias tree="exa --tree"
 alias zshrc="source $HOME/.zshrc"
 alias zz="z -"
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source $HOME/.zsh/themes/git.zsh
+source $HOME/.zsh/themes/gnzh.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.fzfrc
