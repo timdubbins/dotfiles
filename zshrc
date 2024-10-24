@@ -38,6 +38,8 @@ function confirm() {
     fi
 }
 
+alias ..="cd .."
+alias ...="cd ../.."
 alias c="code"
 alias ca="cargo"
 alias cab="cargo build"
@@ -59,6 +61,7 @@ alias l="exa -1"
 alias la="exa -1 -a"
 alias ll="exa -l"
 alias ls="exa"
+alias mkcd='foo() { mkdir -p "$1" && cd "$1"; }; foo'
 alias n="nvim"
 alias nvimrc="nvim $HOME/dotfiles/vimrc"
 alias nzshrc="nvim $HOME/dotfiles/zshrc"
