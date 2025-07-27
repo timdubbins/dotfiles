@@ -57,20 +57,20 @@ alias gc='git commit --verbose'
 alias gd='git diff'
 alias gst='git status'
 alias gundo="confirm && git stash -u && git stash drop; echo"
-alias l="exa -1"
-alias la="exa -1 -a"
-alias ll="exa -l"
-alias ls="exa"
+alias l="eza -1"
+alias la="eza -1 -a"
+alias ll="eza -l"
+alias ls="eza"
 alias mkcd='foo() { mkdir -p "$1" && cd "$1"; }; foo'
 alias n="nvim"
 alias nvimrc="nvim $HOME/dotfiles/vimrc"
 alias nzshrc="nvim $HOME/dotfiles/zshrc"
+alias nfzf='nvim $(fzf)'
 alias o="open"
 alias sleep="pmset sleepnow"
 alias slsk="~/rust/tap/target/release/tap ~/slsk"
 alias sw="swift"
-alias ftap="~/rust/tap/target/release/tap -db --color=fg=268bd2,bg=1d1f21,hl=fdf6e3,prompt=586e75,header=859900,header+=cb4b16,progress=6c71c4,info=2aa198,err=dc322f"
-alias tree="exa --tree"
+alias tree="eza --tree"
 alias zshrc="source $HOME/.zshrc"
 alias zz="z -"
 
